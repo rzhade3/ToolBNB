@@ -13,6 +13,8 @@ html
                         option(value="Screwdrivers")
                         option(value="Wrenches")
                 .form-group
+                    input.form-control(type='code', placeholder='UPC', name='upc')
+                .form-group
                     input.form-control(type='size', placeholder='Size', name='size', list='sizes')
                     datalist(id="sizes")
                         option(value="Large")

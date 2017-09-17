@@ -120,8 +120,12 @@ app.get('/lend', (req, res) => {
 
 app.post('/lend', (req, res) => {
 	var category = req.body.category;
+	var upc = req.body.code;
 	var size = req.body.size;
-	var location = req.body.size;
+	var location = req.body.location;
+	db.ref('Tools/' + category + '/033287163236/users').push({
+		"Austin": "Atlanta"
+	});
 });
 
 app.post('/lend', (req, res) => {
