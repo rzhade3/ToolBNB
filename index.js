@@ -87,7 +87,7 @@ app.get('/profile', (req, res) => {
 });
 
 app.get('/borrow', (req, res) => {
-	// checkAuth(res);
+	checkAuth(res);
 	var rootRef = db.ref().child('Tools/' + 'Drills/');
 	var returnArr = [];
 	rootRef.once('value').then(function(snapshot) {
@@ -101,7 +101,7 @@ app.get('/borrow', (req, res) => {
 });
 
 app.post('/borrow', (req, res) => {
-	// checkAuth(res);
+	checkAuth(res);
 	var rootRef = db.ref().child('Tools/' + req.body.searchvalue);
 	var returnArr = [];
 	rootRef.once('value').then(function(snapshot) {
@@ -121,12 +121,14 @@ app.get('/lend', (req, res) => {
 
 app.post('/lend', (req, res) => {
 	var category = req.body.category;
-	var upc = req.body.code;
+	var upc = req.body.upc;
 	var size = req.body.size;
 	var location = req.body.location;
-	db.ref('Tools/' + category + '/033287163236/users').push({
-		"Austin": "Atlanta"
+	var uid = checkUser();
+	db.ref('Tools/' + category + '/' + upc + '/users/').update({
+		uid: location
 	});
+	res.redirect('/borrow');
 });
 
 app.post('/lend', (req, res) => {
