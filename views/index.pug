@@ -7,8 +7,8 @@ html
 				h1
 					span#one Toolbnb
 					p Book unique tools <br> and experience a tool like an owner.
-	form#searchForm(action="/browse", class="search-wrapper")
-		input(id="searchbar" list="autocomplete" type="text" placeholder="Search" required="")
+	form#searchForm(action="/borrow", method="POST", class="search-wrapper")
+		input(id="searchbar" list="autocomplete" name="searchvalue" type="text" placeholder="Search" required="")
 		datalist(id="autocomplete")
 			option(value="Drills")
 			option(value="Saws")

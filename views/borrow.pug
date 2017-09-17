@@ -2,13 +2,15 @@ html
 	include components/header.pug
 	body
 		include components/navbar.pug
-		each key, val in results
-			.row
-				.col-md-4
-					.row
-						.container-fluid
-							h3= key.type
-				.col-md-8
-					.row
-						.container-fluid
-							h3= key.address
+		.container-fluid
+			h1= "Borrow " + tool
+			each val in results
+				.row
+					.col-md-4
+						.row
+							.container-fluid
+								h3= val.Location
+					.col-md-8
+						.row
+							.container-fluid
+								h3= val.Size

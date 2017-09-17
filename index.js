@@ -22,6 +22,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var db = firebase.database();
+
 app.set('view engine', 'pug');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -57,6 +59,10 @@ app.post('/signup', (req, res) => {
 	var email = req.body.email;
 	var password = req.body.password;
 	firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+		user = checkUser();
+		db.ref('users/' + user.uid).set({
+			email: email
+		});
 		res.redirect('/login');
 	}, (error) => {
 		res.render('signup', {user: checkUser(), errorMessage: error.message});
@@ -65,14 +71,36 @@ app.post('/signup', (req, res) => {
 
 app.get('/profile', (req, res) => {
 	checkAuth(res);
-	res.send("This is the profile page");
+	res.render("profile", {user: checkUser()});
 });
 
 var stuff = [{type: "Hammer", address: "Swag"}, {type: "Hammer", address:"Something"}];
 
 app.get('/borrow', (req, res) => {
-	checkAuth(res);
-	res.render('borrow', {user: checkUser(), results: stuff});
+	// checkAuth(res);
+	var rootRef = db.ref().child('Tools/' + 'Drills/');
+	var returnArr = [];
+	rootRef.once('value').then(function(snapshot) {
+	    snapshot.forEach(function(childSnapshot) {
+	        var item = childSnapshot.val();
+	        returnArr.push(item);
+	    });
+	    res.render('borrow', {user: checkUser(), tool: "a tool", results: returnArr});
+	});
+	console.log(returnArr);
+});
+
+app.post('/borrow', (req, res) => {
+	// checkAuth(res);
+	var rootRef = db.ref().child('Tools/' + req.body.searchvalue);
+	var returnArr = [];
+	rootRef.once('value').then(function(snapshot) {
+	    snapshot.forEach(function(childSnapshot) {
+	        var item = childSnapshot.val();
+	        returnArr.push(item);
+	    });
+	    res.render('borrow', {user: checkUser(), tool: req.body.searchvalue, results: returnArr});
+	});
 });
 
 app.get('/lend', (req, res) => {
