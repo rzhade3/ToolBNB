@@ -40,7 +40,7 @@ app.post('/login', (req, res) => {
 	var email = req.body.email;
 	var password = req.body.password;
 	firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-		return res.redirect('/borrow');
+		return res.redirect('/profile');
 	}, (error) => {
 		return res.render('login', {user: checkUser(), errorMessage: error.message});
 	});
@@ -67,7 +67,7 @@ app.post('/signup', (req, res) => {
 			username: username,
 			email: email
 		});
-		res.redirect('/login');
+		res.redirect('/profile');
 	}, (error) => {
 		res.render('signup', {user: checkUser(), errorMessage: error.message});
 	});
