@@ -17,20 +17,24 @@
     margin-right: 47%;
     margin-top: 40px;
 }
-#hid {
+.hid {
     display: none;
 }
 @import url(http://weloveiconfonts.com/api/?family=fontawesome);
 
 /* fontawesome */
 [class*="fontawesome-"]:before {
-  font-family: 'FontAwesome', sans-serif;
-}    
+    font-family: 'FontAwesome', sans-serif;
+}
+
+.errorMessage {
+    color: red;
+}
 
  /* Form wrapper styling */
 .search-wrapper {
-width: 240px;
-margin: 45px auto 50px auto;
+    width: 240px;
+    margin: 45px auto 50px auto;
 
 }
  

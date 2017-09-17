@@ -77,18 +77,15 @@ app.get('/profile', (req, res) => {
 	checkAuth(res);
 	var uid = checkUser().uid;
 	var returnArr;
-	db.ref('users/' + uid).once('value').then(function(snapshot) {
-	    for (i in snapshot.val()) {
-	    	returnArr.push(i);
-	    }
-	    console.log(returnArr);
+	db.ref('users/' + uid + '/').once('value').then(function(snapshot) {
+		returnArr = snapshot.val();
+	    res.render("profile", {cred: returnArr, user: checkUser()});
 	});
-	res.render("profile", {cred: returnArr, user: checkUser()});
 });
 
 app.get('/borrow', (req, res) => {
 	checkAuth(res);
-	var rootRef = db.ref().child('Tools/' + 'Drills/');
+	var rootRef = db.ref().child('Tools/Drills/');
 	var returnArr = [];
 	rootRef.once('value').then(function(snapshot) {
 	    snapshot.forEach(function(childSnapshot) {
@@ -131,11 +128,6 @@ app.post('/lend', (req, res) => {
 	res.redirect('/borrow');
 });
 
-app.post('/lend', (req, res) => {
-	var category = req.body.category;
-	var size = req.body.size;
-	var location = req.body.size;
-});
 
 function checkUser() {
 	return firebase.auth().currentUser;

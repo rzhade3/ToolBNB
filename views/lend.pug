@@ -15,14 +15,13 @@ html
                 .form-group
                     input.form-control(type='number', placeholder='UPC', name='upc')
                 .form-group
-                    input.form-control(type='text', placeholder='Condition', name='condition', list='sizes')
-                    datalist(id="sizes")
-                        option(value="Like New")
-                        option(value="Moderate")
-                        option(value="Meh")
-                        option(value="It's seen better days")
-                        option(value="Hemanth")
-                        option(value="Literally trash")
+                    select.form-control(type='text', placeholder='Condition', name='condition')
+                        option(value="Like New") Like New
+                        option(value="Moderate") Moderate
+                        option(value="Meh") Meh
+                        option(value="It's seen better days") It's seen better days
+                        option(value="Hemanth") Hemanth
+                        option(value="Literally trash") Literally trash
                 .form-group
                     input.form-control(type='location', placeholder='Location', name='location')
                 |
