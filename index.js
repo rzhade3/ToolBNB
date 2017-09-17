@@ -76,14 +76,14 @@ app.get('/borrow', (req, res) => {
 });
 
 app.get('/lend', (req, res) => {
-	res.send("lend");
+	res.render("lend");
 });
 
 app.post('/lend', (req, res) => {
 	var category = req.body.category;
 	var size = req.body.size;
 	var location = req.body.size;
-});
+
 
 function checkUser() {
 	return firebase.auth().currentUser;
@@ -93,6 +93,10 @@ function checkAuth(res) {
 	if (!checkUser()) {
 		return res.redirect('/');
 	}
+}
+
+function addLendingData() {
+
 }
 
 console.log("Hello world");
