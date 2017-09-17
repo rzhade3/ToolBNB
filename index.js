@@ -75,6 +75,16 @@ app.get('/borrow', (req, res) => {
 	res.render('borrow', {user: checkUser()});
 });
 
+app.get('/lend', (req, res) => {
+	res.send("lend");
+});
+
+app.post('/lend', (req, res) => {
+	var category = req.body.category;
+	var size = req.body.size;
+	var location = req.body.size;
+});
+
 function checkUser() {
 	return firebase.auth().currentUser;
 }
