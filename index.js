@@ -74,7 +74,7 @@ app.get('/borrow', (req, res) => {
 });
 
 app.get('/lend', (req, res) => {
-	res.send("lend");
+	res.render("lend");
 });
 
 app.post('/lend', (req, res) => {

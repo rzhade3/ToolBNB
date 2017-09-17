@@ -1,0 +1,16 @@
+html
+    include components/header.pug
+    body
+        include components/navbar.pug
+        .container-fluid
+            h2 Lend an Item
+            form(action='/lend', method='POST')
+                .form-group
+                    input.form-control(type='category', placeholder='Category', name='category')
+                .form-group
+                    input.form-control(type='size', placeholder='Size', name='size')
+                .form-group
+                    input.form-control(type='location', placeholder='Location', name='location')
+                |
+                button.btn.btn-warning.btn-lg(type='submit')    Confirm
+                p(class='errorMessage')=errorMessage
