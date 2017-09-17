@@ -12,5 +12,47 @@
     text-align: left;
     margin-left: 30%;
 }
+#searchForm {
+    text-align: center;
+    margin-right: 47%;
+    margin-top: 40px;
+}
 
+/*
+    Other Shit
+*/
 
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}    
+
+ /* Form wrapper styling */
+.search-wrapper {
+width: 240px;
+margin: 45px auto 50px auto;
+
+}
+ 
+/* Form text input */
+ 
+.search-wrapper input {
+    width: 400px;
+    height: 50x;
+    padding: 10px 15px;
+    float: left;
+    font: normal 16px 'Arial', 'Tahoma';
+    border: 4;
+    background: #fff;
+    border-radius: 5px;
+    border-color: #FF9F00;
+}
+.navbar.navbar-default {
+    background-color: white;
+    border-color: white;
+}
+  
+ 
+   
