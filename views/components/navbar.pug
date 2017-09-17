@@ -9,7 +9,13 @@ nav.navbar.navbar-default
             img(style='max-height: 50px; display: inline-block; margin-top: -7px;', src='/images/wrench.svg')
     #myNavbar.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right  
-            if (user)    
+            if (user)
+                li
+                    a(href='/borrow')
+                        h5 Borrow
+                li
+                    a(href='/lend')
+                        h5 Lend    
                 li
                     a(href='/profile')
                         h5 My Profile
@@ -17,6 +23,12 @@ nav.navbar.navbar-default
                     a(href='/logout')
                         h5 Sign out
             else
+                li
+                    a(href='/borrow')
+                        h5 Borrow
+                li
+                    a(href='/lend')
+                        h5 Lend
                 li
                     a(href='/login')
                         h5 Log In
