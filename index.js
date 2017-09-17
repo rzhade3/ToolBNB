@@ -56,11 +56,15 @@ app.get('/signup', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
+	var name = req.body.name;
+	var username = req.body.username;
 	var email = req.body.email;
 	var password = req.body.password;
 	firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
 		user = checkUser();
 		db.ref('users/' + user.uid).set({
+			name: name,
+			username: username,
 			email: email
 		});
 		res.redirect('/login');
