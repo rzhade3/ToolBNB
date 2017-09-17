@@ -4,6 +4,7 @@
   "description": "Webpage to borrow tools from people",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "nodemon index.js",
     "sass": "node-sass -w sass/ -o css/"
   },
