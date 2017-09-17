@@ -109,6 +109,7 @@ app.post('/borrow', (req, res) => {
 	        var item = childSnapshot.val();
 	        returnArr.push(item);
 	    });
+	    console.log(returnArr);
 	    res.render('borrow', {user: checkUser(), tool: req.body.searchvalue, results: returnArr});
 	});
 });
