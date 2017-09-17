@@ -67,7 +67,7 @@ app.post('/signup', (req, res) => {
 			username: username,
 			email: email
 		});
-		res.redirect('/login');
+		res.redirect('/profile');
 	}, (error) => {
 		res.render('signup', {user: checkUser(), errorMessage: error.message});
 	});
@@ -75,10 +75,16 @@ app.post('/signup', (req, res) => {
 
 app.get('/profile', (req, res) => {
 	checkAuth(res);
-	res.render("profile", {user: checkUser()});
+	var uid = checkUser().uid;
+	var returnArr;
+	db.ref('users/' + uid).once('value').then(function(snapshot) {
+	    for (i in snapshot.val()) {
+	    	returnArr.push(i);
+	    }
+	    console.log(returnArr);
+	});
+	res.render("profile", {cred: returnArr, user: checkUser()});
 });
-
-var stuff = [{type: "Hammer", address: "Swag"}, {type: "Hammer", address:"Something"}];
 
 app.get('/borrow', (req, res) => {
 	// checkAuth(res);
@@ -89,9 +95,9 @@ app.get('/borrow', (req, res) => {
 	        var item = childSnapshot.val();
 	        returnArr.push(item);
 	    });
+	    console.log(returnArr);
 	    res.render('borrow', {user: checkUser(), tool: "a tool", results: returnArr});
 	});
-	console.log(returnArr);
 });
 
 app.post('/borrow', (req, res) => {
