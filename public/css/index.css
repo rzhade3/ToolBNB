@@ -18,10 +18,6 @@
     margin-top: 40px;
 }
 
-/*
-    Other Shit
-*/
-
 @import url(http://weloveiconfonts.com/api/?family=fontawesome);
 
 /* fontawesome */
@@ -44,14 +40,19 @@ margin: 45px auto 50px auto;
     padding: 10px 15px;
     float: left;
     font: normal 16px 'Arial', 'Tahoma';
-    border: 4;
     background: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
+    border-width: 2px;
     border-color: #FF9F00;
 }
 .navbar.navbar-default {
     background-color: white;
     border-color: white;
+}
+
+#superfluid {
+    width: 400px;
+    height: 50px;
 }
   
  

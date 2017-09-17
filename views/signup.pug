@@ -2,15 +2,19 @@ html
 	include components/header.pug
 	body
 		include components/navbar.pug
-		.container-fluid
-			h2  Sign up
+		.container-fluid#superfluid
+			h2  Sign Up
 			form(action='/signup', method='POST')
+				.form-group
+					.input.form-control(type='text', placeholder="Name", name='name')
+				.form-group
+					.input.form-control(type='text', placeholder='Username', name='username')
 				.form-group
 					input.form-control(type='email', placeholder='Email', name='email')
 				.form-group
 					input.form-control(type='password', placeholder='Password', name='password')
 				|
-				button.btn.btn-warning.btn-lg(type='submit')    Login
+				button.btn.btn-warning.btn-lg(type='submit')    Sign Up
 				p(class='errorMessage')=errorMessage
 			hr
 			p
