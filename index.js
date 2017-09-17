@@ -81,6 +81,7 @@ app.post('/lend', (req, res) => {
 	var category = req.body.category;
 	var size = req.body.size;
 	var location = req.body.size;
+
 })
 
 console.log("Hello world");
