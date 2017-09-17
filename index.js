@@ -34,7 +34,6 @@ app.get('/login', (req, res) => {
 	res.render('login', {user: checkUser()});
 });
 
-// Change this so it authenticates the user
 app.post('/login', (req, res) => {
 	var email = req.body.email;
 	var password = req.body.password;
@@ -54,7 +53,6 @@ app.get('/signup', (req, res) => {
 	res.render("signup", {user: checkUser(), errorMessage: ''});
 });
 
-// Change this so it signs the user in
 app.post('/signup', (req, res) => {
 	var email = req.body.email;
 	var password = req.body.password;
@@ -70,12 +68,15 @@ app.get('/profile', (req, res) => {
 	res.send("This is the profile page");
 });
 
+var stuff = [{type: "Hammer", address: "Swag"}, {type: "Hammer", address:"Something"}];
+
 app.get('/borrow', (req, res) => {
 	checkAuth(res);
-	res.render('borrow', {user: checkUser()});
+	res.render('borrow', {user: checkUser(), results: stuff});
 });
 
 app.get('/lend', (req, res) => {
+	checkAuth(res);
 	res.render("lend");
 });
 
@@ -83,19 +84,6 @@ app.post('/lend', (req, res) => {
 	var category = req.body.category;
 	var size = req.body.size;
 	var location = req.body.size;
-
-
-function checkUser() {
-	return firebase.auth().currentUser;
-}
-
-function checkAuth(res) {
-	if (!checkUser()) {
-		return res.redirect('/');
-	}
-}
-app.get('/lend', (req, res) => {
-	res.send("lend");
 });
 
 app.post('/lend', (req, res) => {
@@ -104,8 +92,14 @@ app.post('/lend', (req, res) => {
 	var location = req.body.size;
 });
 
-function addLendingData() {
+function checkUser() {
+	return firebase.auth().currentUser;
+}
 
+function checkAuth(res) {
+	if (!checkUser()) {
+		return res.redirect('/login');
+	}
 }
 
 console.log("Hello world");

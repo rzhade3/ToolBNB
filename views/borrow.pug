@@ -2,18 +2,13 @@ html
 	include components/header.pug
 	body
 		include components/navbar.pug
-		.row
-			.col-md-4
-				.container-fluid
-					h3 Hello World
-					- for (var i = 0; i < 4; i++) {
-						.row
-							h3 Hello World
-					- }
-			.col-md-8
-				.container-fluid
-					h3 Austin is Gay
-					- for (var i = 0; i < 4; i++) {
-						.row
-							h3 Austin is Gay
-					- }
+		each key, val in results
+			.row
+				.col-md-4
+					.row
+						.container-fluid
+							h3= key.type
+				.col-md-8
+					.row
+						.container-fluid
+							h3= key.address
