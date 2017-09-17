@@ -2,13 +2,22 @@ html
     include components/header.pug
     body
         include components/navbar.pug
-        .container-fluid
+        .container-fluid#lending
             h2 Lend an Item
             form(action='/lend', method='POST')
                 .form-group
-                    input.form-control(type='category', placeholder='Category', name='category')
+                    input.form-control(type='category', placeholder='Category', name='category' list='autocomplete')
+                    datalist(id="autocomplete")
+                        option(value="Drills")
+                        option(value="Saws")
+                        option(value="Screwdrivers")
+                        option(value="Wrenches")
                 .form-group
-                    input.form-control(type='size', placeholder='Size', name='size')
+                    input.form-control(type='size', placeholder='Size', name='size', list='sizes')
+                    datalist(id="sizes")
+                        option(value="Large")
+                        option(value="Medium")
+                        option(value="Small")
                 .form-group
                     input.form-control(type='location', placeholder='Location', name='location')
                 |
