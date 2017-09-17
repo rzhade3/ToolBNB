@@ -9,9 +9,17 @@ nav.navbar.navbar-default
             img(style='max-height: 50px; display: inline-block; margin-top: -7px;', src='/images/wrench.svg')
     #myNavbar.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-right  
-            li
-                a(href='/login')
-                    h5 Log In
-            li
-                a(href='/signup')
-                    h5 Sign Up
+            if (user)    
+                li
+                    a(href='/profile')
+                        h5 My Profile
+                li
+                    a(href='/logout')
+                        h5 Sign out
+            else
+                li
+                    a(href='/login')
+                        h5 Log In
+                li
+                    a(href='/signup')
+                        h5 Sign Up
