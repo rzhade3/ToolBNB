@@ -1,7 +1,15 @@
 #one {
     color: #FF9F00;
     font-weight: bold;
+    font-size: 2.5em;
 }
-.container-fluid {
-    align-content: center;
+.outDiv {
+    width: 55%;
+    height: auto;
 }
+.innerdiv {
+    max-width: 40%;
+    text-align: left;
+    margin-left: 30%
+}
+
