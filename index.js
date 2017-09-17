@@ -27,11 +27,11 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-	res.render('index');
+	res.render('index', {user: checkUser()});
 });
 
 app.get('/login', (req, res) => {
-	res.render('login');
+	res.render('login', {user: checkUser()});
 });
 
 // Change this so it authenticates the user
@@ -39,9 +39,9 @@ app.post('/login', (req, res) => {
 	var email = req.body.email;
 	var password = req.body.password;
 	firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-		return res.redirect('/profile');
+		return res.redirect('/borrow');
 	}, (error) => {
-		return res.render('login');
+		return res.render('login', {user: checkUser(), errorMessage: error.message});
 	});
 });
 
@@ -51,7 +51,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/signup', (req, res) => {
-	res.render("signup");
+	res.render("signup", {user: checkUser(), errorMessage: ''});
 });
 
 // Change this so it signs the user in
@@ -61,16 +61,18 @@ app.post('/signup', (req, res) => {
 	firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
 		res.redirect('/login');
 	}, (error) => {
-		res.render('signup');
+		res.render('signup', {user: checkUser(), errorMessage: error.message});
 	});
 });
 
 app.get('/profile', (req, res) => {
+	checkAuth(res);
 	res.send("This is the profile page");
 });
 
 app.get('/borrow', (req, res) => {
-	res.render('borrow');
+	checkAuth(res);
+	res.render('borrow', {user: checkUser()});
 });
 
 app.get('/lend', (req, res) => {
@@ -81,7 +83,17 @@ app.post('/lend', (req, res) => {
 	var category = req.body.category;
 	var size = req.body.size;
 	var location = req.body.size;
-})
+});
+
+function checkUser() {
+	return firebase.auth().currentUser;
+}
+
+function checkAuth(res) {
+	if (!checkUser()) {
+		return res.redirect('/');
+	}
+}
 
 console.log("Hello world");
 app.listen(port);
