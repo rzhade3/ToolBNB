@@ -1,1 +1,3 @@
-var x = $(searchbar).required;
+$(function() {
+	$('#product').click('');
+});
