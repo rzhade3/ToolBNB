@@ -3,8 +3,8 @@ html
 	body
 		include components/navbar.pug
 		.container-fluid
-			h2  Log in
-			form(action='/login', method='POST')
+			h2  Sign up
+			form(action='/signup', method='POST')
 				.form-group
 					input.form-control(type='email', placeholder='Email', name='email')
 				.form-group
@@ -19,3 +19,4 @@ html
 			p
 				| Or go 
 				a(href='/') home
+		

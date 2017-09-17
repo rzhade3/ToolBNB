@@ -18,38 +18,54 @@ var config = {
 	authDomain: "homedepot-96042.firebaseapp.com",
 	databaseURL: "https://homedepot-96042.firebaseio.com",
 	storageBucket: "homedepot-96042.appspot.com",
+	messagingSenderId: "691782900832"
 };
 firebase.initializeApp(config);
 
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-	res.render('index.pug');
+	res.render('index');
 });
 
 app.get('/login', (req, res) => {
-	res.render('login.pug');
+	res.render('login');
 });
 
 // Change this so it authenticates the user
 app.post('/login', (req, res) => {
+	var email = req.body.email;
+	var password = req.body.password;
+	firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+		return res.redirect('/profile');
+	}, (error) => {
+		return res.render('login');
+	});
+});
+
+app.get('/logout', (req, res) => {
+	firebase.auth().signOut();
 	res.redirect('/');
 });
 
 app.get('/signup', (req, res) => {
-	res.send("This is the signup page");
+	res.render("signup");
 });
 
 // Change this so it signs the user in
 app.post('/signup', (req, res) => {
-	res.redirect('/');
+	var email = req.body.email;
+	var password = req.body.password;
+	firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+		res.redirect('/login');
+	}, (error) => {
+		res.render('signup');
+	});
 });
 
 app.get('/profile', (req, res) => {
 	res.send("This is the profile page");
 });
-
-app.get('/')
 
 console.log("Hello world");
 app.listen(port);
