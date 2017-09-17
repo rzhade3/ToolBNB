@@ -69,5 +69,9 @@ app.get('/profile', (req, res) => {
 	res.send("This is the profile page");
 });
 
+app.get('/borrow', (req, res) => {
+	res.render('borrow');
+});
+
 console.log("Hello world");
 app.listen(port);
