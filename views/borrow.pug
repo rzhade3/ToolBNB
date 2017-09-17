@@ -1,5 +1,6 @@
 html
 	include components/header.pug
+	script(src='/js/ajax.js')
 	body
 		include components/navbar.pug
 		.container-fluid#seachbarborrow
@@ -12,15 +13,17 @@ html
 					option(value="Wrenches")
 		.container-fluid
 			h1= "Borrow " + tool
-			each val in results
+			each key, index in results
 				.row
 					.col-md-4
-						.row
-							a#product
-								.container-fluid
-									h3= val.name
-									p= val.description
-					.col-md-8
-						.row
+						a(id="a" + index)
 							.container-fluid
-								h3= val.Size
+								h3= key.name
+								p= key.description
+					.col-md-8
+						div(class="la" + index + " hid")
+							each k, v in key.users
+								.row
+									.container-fluid
+										h3= k
+										h6= v
